@@ -90,15 +90,82 @@ class Linked{
 		Node node = head;
 		while(node.next.next != null) {
 			//System.out.println(node.data);
-			
 			node = node.next ;
-			
+		}
+		node.next = null;
+	}
+	// delete first node from linkedlist
+	void deleteFirstNode() {
+		Node node = head;
+		
+		if(node != null) {
+			Node temp = node.next;
+			head = temp;
 		}
 		
-			node.next = null;
-			
+	}
+	// delete element at given position
+	void deleteNodeAtPosition(int position) {
+		Node node = head;
+		int pos = 0;
+	if(position < 0) {
+		System.out.println("Not a valid position. try again");
+	}
+	
+		while(node.next != null) {
+			//System.out.println(node.data);
+			if(pos == position) {
+				node.next = node.next.next ;
+			}
+			node = node.next;
+			pos += 1;
+		}
+	}
+	// Get size of list | Length of Linked List
+	int getSize() {
+		int size =0;
+		Node node = head;
+		while(node.next!= null) {
+			node = node.next;
+			size+=1;
+		}
+		return size;
 		
+	}
+	// Search node in Linked List
+	boolean searchNode(int data) {
+		Node node = head;
+		while(node.next != null) {
+			if(node.data == data) { 
+				return true;
+			}
+			node = node.next;
+		}
+		return false;
 		
+	}
+	// Rotate the Linked List in clock-wise by k nodes
+	void rotateLinkedList(int no) {
+		// get size of the linkedlist 
+		int size = getSize();
+		Node node = head;
+		int pos =0;
+		Node temp = null;
+		while(node.next != null) {
+			if(pos == size - no) {
+				temp = node.next;
+				node.next = null;
+				break;
+			}
+			node = node.next;
+			pos+=1;
+		}
+		Node in = head;
+		head = temp;
+		while(temp.next != null) {
+			temp = temp.next;
+		}
+		temp.next = in;
 	}
 }
 public class LinkedList {
@@ -115,7 +182,12 @@ public class LinkedList {
 		list.insertEnd(100);
 		list.insertAnyPoint(9, 2);
 		list.insertAnyPoint(90, 3);
-		list.deleteLastNode();
+		//list.deleteLastNode();
+//		list.deleteFirstNode();
+//		list.deleteNodeAtPosition(8);
+		System.out.println("size of linkedlist: "+list.getSize());
+		System.out.println("Is data found: "+list.searchNode(16));
+		list.rotateLinkedList(3);
 		list.show();
 	}
 }
