@@ -227,15 +227,31 @@ class Linked{
 		15
 		16
 		17
-		100*/
+		100
+		*/
 		while(node != null) {
-			next = node.next;
+			next = node.next; 
 			node.next = prev;
 			prev = node;
 			node = next;
 		}
 		head = prev;
 	}
+	// Get the middle of the node
+	void middleNode() {
+		int size = getSize();
+		int middle = (int) Math.floor(size/2);
+		int pos = 0;
+		Node node = head;
+		while(node.next != null) {
+			if(middle == pos) {
+				System.out.println("middle node is: "+node.data);
+			}pos+=1;
+			node = node.next;
+		}
+	}
+	
+	
 	
 }
 public class LinkedList {
@@ -260,7 +276,8 @@ public class LinkedList {
 		//list.rotateLinkedList(3);
 		//list.rotateAntiClockWise(2);
 		//list.reverseLinkedList();
-		list.reverseLinkedList();
+		//list.reverseLinkedList();
+		list.middleNode();
 		list.show();
 	}
 }
